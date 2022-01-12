@@ -401,7 +401,7 @@
 						return format(date);
 					};
 					var parseDateTime = function(date) {
-						return new Date(date);
+						return new Date(Date.parse(date));
 					};
 				}
 				
