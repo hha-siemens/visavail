@@ -1147,8 +1147,7 @@
 									// checkmark icon
 									output = '<i class=" '+ options.icon.class_has_data +' tooltip_has_data"></i>';
 								} else {
-									// cross icon
-									output = '<i class=" '+ options.icon.class_has_no_data + ' tooltip_has_no_data"></i>';
+									output = '<p>'+d[1]+'</p>';
 								}
 							}
 
@@ -1162,6 +1161,9 @@
 									output += ' ' + series.description[i] + ' ';
 								}
 							}
+							if(options.tooltip.duration){
+								output += '<p>'+moment.duration(moment(d[0]).diff(moment(d[2])))+'</p>';
+							}
 							
 							if (options.is_date_only_format && !options.tooltip.date_plus_time) {
 								if (d[2] > d3.timeSecond.offset(d[0], 86400) && !options.tooltip.only_first_date) {
@@ -1170,6 +1172,15 @@
 										' - ' + moment(d[0]).format('l');
 									return output + moment(d[0]).format('l') +
 										' - ' + moment(d[2]).format('l');
+								}
+								if(options.date_is_descending)
+									return output + moment(d[2]).format('l');
+								return output + moment(d[0]).format('l');
+							}
+							if (options.is_time_only_format && !options.tooltip.date_plus_time) {
+								if (d[2] > d3.timeSecond.offset(d[0], 86400) && !options.tooltip.only_first_date) {
+									return output + moment(d[0]).format('mm:ss.SSS') +
+										' - ' + moment(d[2]).format('mm:ss.SSS');
 								}
 								if(options.date_is_descending)
 									return output + moment(d[2]).format('l');
