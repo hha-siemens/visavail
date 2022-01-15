@@ -1022,17 +1022,7 @@
 								}
 							)[0];
 							if (series && series.categories) {
-								return Object.keys(series.categories).forEach(category => {
-									if (category === d[1] || d[1].toLowerCase().includes(category.toLowerCase())) {
-										return series.categories[category].class;
-									}
-									if (parseInt(category) > 0 && parseInt(d[1]) > 0) {
-										return series.categories[category].class;
-									}
-									if (parseInt(category) < 1 && parseInt(d[1]) < 1) {
-										return series.categories[category].class;
-									}
-								})
+								return series.categories[d[1]].class;
 							}
 						} else {
 							if (d[1] === 1) {
@@ -1152,18 +1142,8 @@
 									return series.disp_data.indexOf(d) >= 0;
 								}
 							)[0];
-							if (series)
-								Object.keys(series.categories).forEach(category => {
-									if (category === d[1] || d[1].toLowerCase().includes(category.toLowerCase())) {
-										output = series.categories[category].tooltip_html;
-									}
-									if (parseInt(category) > 0 && parseInt(d[1]) > 0) {
-										output = series.categories[category].tooltip_html;
-									}
-									if (parseInt(category) < 1 && parseInt(d[1]) < 1) {
-										output = series.categories[category].tooltip_html;
-									}
-								});
+							if (series && series.categories[d[1]].tooltip_html)
+								output = series.categories[d[1]].tooltip_html;
 							else
 								output = '&nbsp;' + d[1] + '&nbsp;';
 						} else {
@@ -1517,17 +1497,7 @@
 									)[0];
 									if (series && series.categories) {
 										//d3.select(this).attr('fill', series.categories[d[1]].color);
-										Object.keys(series.categories).forEach(category => {
-											if (category === d[1] || d[1].toLowerCase().includes(category.toLowerCase())) {
-												return series.categories[category].class;
-											}
-											if (parseInt(category) > 0 && parseInt(d[1]) > 0) {
-												return series.categories[category].class;
-											}
-											if (parseInt(category) < 1 && parseInt(d[1]) < 1) {
-												return series.categories[category].class;
-											}
-										})
+										return series.categories[d[1]].class;
 									}
 								} else {
 									if (d[1] === 1) {
