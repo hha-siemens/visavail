@@ -1022,7 +1022,7 @@
 								}
 							)[0];
 							if (series && series.categories) {
-								Object.keys(series.categories).forEach(category => {
+								return Object.keys(series.categories).forEach(category => {
 									if (category === d[1] || d[1].toLowerCase().includes(category.toLowerCase())) {
 										return series.categories[category].class;
 									}
@@ -1152,7 +1152,7 @@
 									return series.disp_data.indexOf(d) >= 0;
 								}
 							)[0];
-							if (series && series.categories[d[1]].tooltip_html)
+							if (series)
 								Object.keys(series.categories).forEach(category => {
 									if (category === d[1] || d[1].toLowerCase().includes(category.toLowerCase())) {
 										output = series.categories[category].tooltip_html;
