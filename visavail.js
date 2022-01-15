@@ -1181,7 +1181,7 @@
 							return output + moment(d[0]).format('l');
 						}
 						if (options.is_time_only_format && !options.tooltip.date_plus_time) {
-							if (d[2] > d3.timeSecond.offset(d[0], 86400) && !options.tooltip.only_first_date) {
+							if (d[2] && !options.tooltip.only_first_date) {
 								return output + moment(d[0]).format('mm:ss.SSS') +
 									' - ' + moment(d[2]).format('mm:ss.SSS');
 							}
