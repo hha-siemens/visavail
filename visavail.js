@@ -446,7 +446,7 @@
 								} else
 									throw new Error('Defined block true but dataset not correct');
 							}
-						} if((d1[0] instanceof Date) && (d1[2] instanceof Date)){
+						} if ((d1[0] instanceof Date) && (d1[2] instanceof Date)) {
 							options.is_date_only_format = false;
 							options.is_time_only_format = true;
 						}
@@ -1022,7 +1022,17 @@
 								}
 							)[0];
 							if (series && series.categories) {
-								return series.categories[d[1]].class;
+								Object.keys(series.categories).forEach(category => {
+									if (category === d[1] || d[1].toLowerCase().includes(category.toLowerCase())) {
+										return series.categories[category].class;
+									}
+									if (parseInt(category) > 0 && parseInt(d[1]) > 0) {
+										return series.categories[category].class;
+									}
+									if (parseInt(category) < 1 && parseInt(d[1]) < 1) {
+										return series.categories[category].class;
+									}
+								})
 							}
 						} else {
 							if (d[1] === 1) {
@@ -1143,7 +1153,17 @@
 								}
 							)[0];
 							if (series && series.categories[d[1]].tooltip_html)
-								output = series.categories[d[1]].tooltip_html;
+								Object.keys(series.categories).forEach(category => {
+									if (category === d[1] || d[1].toLowerCase().includes(category.toLowerCase())) {
+										output = series.categories[category].tooltip_html;
+									}
+									if (parseInt(category) > 0 && parseInt(d[1]) > 0) {
+										output = series.categories[category].tooltip_html;
+									}
+									if (parseInt(category) < 1 && parseInt(d[1]) < 1) {
+										output = series.categories[category].tooltip_html;
+									}
+								});
 							else
 								output = '&nbsp;' + d[1] + '&nbsp;';
 						} else {
@@ -1497,7 +1517,17 @@
 									)[0];
 									if (series && series.categories) {
 										//d3.select(this).attr('fill', series.categories[d[1]].color);
-										return series.categories[d[1]].class;
+										Object.keys(series.categories).forEach(category => {
+											if (category === d[1] || d[1].toLowerCase().includes(category.toLowerCase())) {
+												return series.categories[category].class;
+											}
+											if (parseInt(category) > 0 && parseInt(d[1]) > 0) {
+												return series.categories[category].class;
+											}
+											if (parseInt(category) < 1 && parseInt(d[1]) < 1) {
+												return series.categories[category].class;
+											}
+										})
 									}
 								} else {
 									if (d[1] === 1) {
