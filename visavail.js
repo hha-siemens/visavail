@@ -446,6 +446,9 @@
 								} else
 									throw new Error('Defined block true but dataset not correct');
 							}
+						} if((d1[0] instanceof Date) && (d1[2] instanceof Date)){
+							options.is_date_only_format = false;
+							options.is_time_only_format = true;
 						}
 					});
 				});
