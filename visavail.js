@@ -427,7 +427,9 @@
 							}
 						}
 						if (!(d1[2] instanceof Date)) {
-							if (!options.defined_blocks) {
+							if (!options.defined_blocks && options.display_date_range[1]) {
+								d1[2] = options.display_date_range[1];
+							} else if (!options.defined_blocks) {
 								d1[2] = d3.timeSecond.offset(d1[0], d.interval_s);
 							} else {
 								if (d1[2]) {
