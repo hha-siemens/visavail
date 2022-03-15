@@ -1167,7 +1167,8 @@
 								output += ' ' + series.description[i] + ' ';
 							}
 						}
-						output += '<p>Duration :' + moment.duration(moment(d[2]).diff(moment(d[0]))) / 1000 + ' s</p>';
+						//round duration to first decimal
+						output += '<p>Duration :' + Math.round(moment.duration(moment(d[2]).diff(moment(d[0]))) / 100)/10 + ' s</p>';
 
 
 						if (options.is_date_only_format && !options.tooltip.date_plus_time) {
@@ -1184,8 +1185,8 @@
 						}
 						if (options.is_time_only_format && !options.tooltip.date_plus_time) {
 							if (d[2] && !options.tooltip.only_first_date) {
-								return output + moment(d[0]).format('mm:ss.SSS') +
-									' - ' + moment(d[2]).format('mm:ss.SSS');
+								return output + moment(d[0]).format('mm:ss.S') +
+									' - ' + moment(d[2]).format('mm:ss.S');
 							}
 							if (options.date_is_descending)
 								return output + moment(d[2]).format('l');
